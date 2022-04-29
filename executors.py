@@ -13,7 +13,7 @@ import regression_models
 
 
 class MainExecutor:
-    path = "C:\\Users\\varunakanthak\\Automation\\chrome_driver\\chromedriver"
+    path = "C:\\Users\\varunakanthak\\Automation\\drivers\\chromedriver"
     #path_FF = 'C:\\Users\\varunakanthak\\Automation\\geko_driver\\geckodriver'
     selenium_driver = None
     data_frame = None
