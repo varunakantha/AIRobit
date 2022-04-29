@@ -5,7 +5,7 @@
 
 import executors
 
-target_page = "https://gossip.hirufm.lk/74181/2022/04/chamara-wijesooriya.html"
+target_page = "https://gossip.hirufm.lk/74204/2022/04/nandalal-weerasinghe.html"
 target_element = "/html/body/div[1]/div[5]/div[7]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
 
 if __name__ == '__main__':

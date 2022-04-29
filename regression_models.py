@@ -11,6 +11,7 @@ import cmath
 
 
 def perform_liner_regression(data_frame):
+    print("Performing linear Regression...")
     x = pd.DataFrame(data_frame, columns=["time"])
     y = pd.DataFrame(data_frame, columns=["count"])
 
@@ -31,6 +32,7 @@ def perform_liner_regression(data_frame):
 
 
 def perform_polynomial_regression(data_frame, counter):
+    print("Performing polynomial Regression...")
     font1 = {'family': 'serif', 'color': 'blue', 'size': 20}
     next_minute = counter + 1
 
@@ -104,4 +106,5 @@ def perform_polynomial_regression(data_frame, counter):
         ((a * next_minute * next_minute) + (b * next_minute) + c) - total_likes))
     print("Predicted Likes in next minute-1 : " + str(round(b)))
     print("Predicted Total Likes : " + str(((a * saturated_time * saturated_time) + (b * saturated_time) + c)))
-    print("----------------------------------------------")
+    print("--------------------------------------------------------------------------------------------")
+    print("--------------------------------------------------------------------------------------------")
