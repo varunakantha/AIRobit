@@ -33,9 +33,12 @@ class MainExecutor:
         # Make Headless
         print("Starting  with Headless-Mode...")
         options.headless = True
+
         options.binary_location = r"C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+
         print("Opening Browser...")
         MainExecutor.selenium_driver = webdriver.Firefox(executable_path=MainExecutor.path_firefox, options=options)
+
         print("Maximizing Browser...")
         MainExecutor.selenium_driver.maximize_window()
 
@@ -70,6 +73,7 @@ class MainExecutor:
         time.sleep(1)
 
         # Check the login title
+        print( MainExecutor.selenium_driver.title)
         if MainExecutor.selenium_driver.title == "Facebook":
             print("FB Login is Successful !")
             return True
@@ -91,7 +95,8 @@ class MainExecutor:
 
     def start_data_stream(self, url, xpath):
 
-        for counter in range(1, 720):
+        # Configured to run for 24 hours
+        for counter in range(1, 1440):
             print("Redirecting to target page...")
             MainExecutor.selenium_driver.get(url)
             print("Locating  target Data piece...")
@@ -109,8 +114,7 @@ class MainExecutor:
             # self.data_frame.loc[counter, 'count'] = float(int(self.extract_numbers(target_element.text)) - 1)
 
             # loop is configured to be executed in every minute
-            print("Waiting for 1 minute...")
-            time.sleep(60)
+
 
             # regression_models.perform_liner_regression(self.data_frame)
 

@@ -1,10 +1,8 @@
 import time
 
 from matplotlib import pyplot as plt
-from pandas import DataFrame
 from sklearn.linear_model import LinearRegression
 import pandas as pd
-import seaborn as sns
 from sklearn.metrics import r2_score
 from sklearn.preprocessing import PolynomialFeatures
 import cmath
@@ -25,7 +23,10 @@ def perform_liner_regression(data_frame):
     # print("Coefficients : " + str(model.coef_))
     # print("Intercept : " + str(model.intercept_))
     print("Liner Prediction : y = " + str(m) + "x + " + str(c))
-
+    print("--------------------------------------------------------------------------------------------")
+    print("--------------------------------------------------------------------------------------------")
+    print("Waiting for 1 minute...")
+    time.sleep(60)
     # data_frame = data_frame.astype('float64')  # <-seaborn library bug fix
     # sns.pairplot(data_frame, x_vars=['time'], y_vars='count', height=3, aspect=0.7, kind='reg')
     # plt.show()
@@ -106,5 +107,4 @@ def perform_polynomial_regression(data_frame, counter):
         ((a * next_minute * next_minute) + (b * next_minute) + c) - total_likes))
     print("Predicted Likes in next minute-1 : " + str(round(b)))
     print("Predicted Total Likes : " + str(((a * saturated_time * saturated_time) + (b * saturated_time) + c)))
-    print("--------------------------------------------------------------------------------------------")
-    print("--------------------------------------------------------------------------------------------")
+
