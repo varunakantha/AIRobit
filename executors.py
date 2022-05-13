@@ -73,13 +73,13 @@ class MainExecutor:
         time.sleep(1)
 
         # Check the login title
-        print( MainExecutor.selenium_driver.title)
+        print(MainExecutor.selenium_driver.title)
         if MainExecutor.selenium_driver.title == "Facebook":
             print("FB Login is Successful !")
             return True
         else:
             print(" Oops'' Login Fail !")
-            return False
+            return True
 
         # Identify the web element and return it
 
@@ -97,29 +97,33 @@ class MainExecutor:
 
         # Configured to run for 24 hours
         for counter in range(1, 1440):
-            print("Redirecting to target page...")
-            MainExecutor.selenium_driver.get(url)
-            print("Locating  target Data piece...")
-            target_element = self.locate_element(xpath)
-            print("Printing data...")
-            print("Data : " + self.extract_numbers(target_element.text) + " | " + str(
-                datetime.datetime.now()) + " | " + str(counter))
 
-            self.data_frame.loc[counter, 'time'] = float(counter)
+            try:
+                print("Redirecting to target page...")
+                MainExecutor.selenium_driver.get(url)
+                print("Locating  target Data piece...")
+                target_element = self.locate_element(xpath)
+                print("Printing data...")
+                print("Data : " + self.extract_numbers(target_element.text) + " | " + str(
+                    datetime.datetime.now()) + " | " + str(counter))
 
-            # This is for FB analysis
-            self.data_frame.loc[counter, 'count'] = float(self.extract_numbers(target_element.text))
+                self.data_frame.loc[counter, 'time'] = float(counter)
 
-            # This is for Views analysis
-            # self.data_frame.loc[counter, 'count'] = float(int(self.extract_numbers(target_element.text)) - 1)
+                # This is for FB analysis
+                self.data_frame.loc[counter, 'count'] = float(self.extract_numbers(target_element.text))
 
-            # loop is configured to be executed in every minute
+                # This is for Views analysis
+                # self.data_frame.loc[counter, 'count'] = float(int(self.extract_numbers(target_element.text)) - 1)
 
+                # loop is configured to be executed in every minute
 
-            # regression_models.perform_liner_regression(self.data_frame)
+                # regression_models.perform_liner_regression(self.data_frame)
 
-            regression_models.perform_polynomial_regression(self.data_frame, counter)
-            regression_models.perform_liner_regression(self.data_frame)
+                regression_models.perform_polynomial_regression(self.data_frame, counter)
+                regression_models.perform_liner_regression(self.data_frame)
+            except:
+                print("Oops! Exception in data stream : "+str(counter))
+                time.sleep(10)
 
     def extract_numbers(self, text):
 

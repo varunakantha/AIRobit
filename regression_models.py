@@ -26,7 +26,7 @@ def perform_liner_regression(data_frame):
     print("--------------------------------------------------------------------------------------------")
     print("--------------------------------------------------------------------------------------------")
     print("Waiting for 1 minute...")
-    time.sleep(60)
+    time.sleep(10)
     # data_frame = data_frame.astype('float64')  # <-seaborn library bug fix
     # sns.pairplot(data_frame, x_vars=['time'], y_vars='count', height=3, aspect=0.7, kind='reg')
     # plt.show()
