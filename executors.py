@@ -53,28 +53,30 @@ class MainExecutor:
         # Enter username
         print("Entering Username...")
         user_name = self.locate_element(
-            "/html/body/div[1]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[1]/input")
+            "/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[1]/input")
+
         user_name.clear()
         user_name.send_keys(email)
 
         # Enter password
         print("Entering Password...")
         password = self.locate_element(
-            "/html/body/div[1]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[2]/div/input")
+            "/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[2]/div/input")
         password.clear()
         password.send_keys(key)
 
         # Click login button
         print("Clicking Login Button...")
         login_button = self.locate_element(
-            "/html/body/div[1]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/button")
+            "/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/button")
+
         login_button.click()
 
         time.sleep(1)
+        sub_string = "Facebook"
 
         # Check the login title
-        print(MainExecutor.selenium_driver.title)
-        if MainExecutor.selenium_driver.title == "Facebook":
+        if sub_string in MainExecutor.selenium_driver.title:
             print("FB Login is Successful !")
             return True
         else:
@@ -89,9 +91,9 @@ class MainExecutor:
             element = WebDriverWait(MainExecutor.selenium_driver, 50).until(
                 EC.presence_of_element_located((By.XPATH, xpath)))
             return element
-        except:
+        except Exception as e:
 
-            print("Oops ! Element cannot be detected.")
+            print("Oops ! Element cannot be detected : " + str(e))
 
     def start_data_stream(self, url, xpath):
 
@@ -121,9 +123,10 @@ class MainExecutor:
 
                 regression_models.perform_polynomial_regression(self.data_frame, counter)
                 regression_models.perform_liner_regression(self.data_frame)
-            except:
-                print("Oops! Exception in data stream : "+str(counter))
-                time.sleep(10)
+            except Exception as e:
+                print("Oops! Exception in data stream : " + str(counter))
+                print(str(e))
+                time.sleep(60)
 
     def extract_numbers(self, text):
 

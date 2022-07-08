@@ -7,22 +7,21 @@ import time
 
 import executors
 
-target_page = "https://gossip.hirufm.lk/74760/2022/05/gotagogama.html"
-target_element = "/html/body/div[1]/div[5]/div[7]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
+target_page = "https://gossip.hirufm.lk/76810/2022/07/lasith-malinga.html"
+target_element = "/html/body/div[3]/div[5]/div[7]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
 
 if __name__ == '__main__':
     executor = executors.MainExecutor()
 
-    if executor.login("varunakantha@gmail.com", "GotaGota@173"):
-        # if(True):
+    #if executor.login("varunakantha@gmail.com", "xxx"):
 
-        try:
+    try:
             executor.start_data_stream(target_page, target_element)
 
-        except:
-            print("Oops! Exception in main method")
-            # time.sleep(60)
+    except Exception as e:
+            print("Oops! Exception in main method : " + str(e))
+            time.sleep(5)
             executor.start_data_stream(target_page, target_element)
 
-    else:
-        print("Ooops! Unable to login to account.")
+    # else:
+    #     print("Ooops! Unable to login to account.")
