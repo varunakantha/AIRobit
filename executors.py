@@ -110,6 +110,7 @@ class MainExecutor:
                     datetime.datetime.now()) + " | " + str(counter))
 
                 self.data_frame.loc[counter, 'time'] = float(counter)
+                self.data_frame.loc[counter, 'ftime'] = float(counter+1)
 
                 # This is for FB analysis
                 #self.data_frame.loc[counter, 'count'] = float(self.extract_numbers(target_element.text))

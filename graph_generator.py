@@ -8,27 +8,28 @@ def plotdata():
     plt.style.use('fivethirtyeight')
     font1 = {'family': 'serif', 'color': 'blue', 'size': 20}
 
-    # x_vals = []
-    # y_vals = []
-
-    # index = count()
-
 
     def animate(i):
         data = pd.read_excel('Data\graph.xlsx')
         if len(data)>0:
             x = data['time'].to_list()
+            x1=data['ftime'].to_list()
             y1 = data['count'].to_list()
+            z = data['predicted_value'].to_list()
+
             y_counter = data['time'].iat[-1]
-            # a = data['a'].iat[-1]
-            # b = data['b'].iat[-1]
-            # c = data['c'].iat[-1]
+            current_a = data['a'].iat[-1]
+            current_b = data['b'].iat[-1]
+            current_c = data['c'].iat[-1]
+
+
             plt.cla()
-            plt.scatter(x, y1, color='red')
+            plt.scatter(x, y1, color='black')
             plt.plot(x, y1, label='Channel 1')
+            plt.plot(x1, z, label='Channel 2')
 
             # plt.legend(loc='upper left')
-            title  = open('title.txt','r').read()
+            title = "y = (" + str(current_a) + ")x^2 + (" + str(current_b) + ")x + " + str(current_c)
             plt.title(title)
             plt.tight_layout()
             plt.savefig("Data/graph-" + str(y_counter) + ".png")

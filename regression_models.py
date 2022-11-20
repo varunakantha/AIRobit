@@ -8,7 +8,6 @@ from sklearn.metrics import r2_score
 from sklearn.preprocessing import PolynomialFeatures
 import cmath
 
-
 import random
 from itertools import count
 import pandas as pd
@@ -19,12 +18,8 @@ from matplotlib.animation import FuncAnimation
 
 
 # plt.ion()
-def animate(i,x,y):
-    plt.cla()
-    plt.plot(x, y, label='Channel 1')
+import executors
 
-    plt.legend(loc='upper left')
-    plt.tight_layout()
 
 def perform_liner_regression(data_frame):
     print("Performing linear Regression...")
@@ -55,14 +50,9 @@ def perform_polynomial_regression(data_frame, counter):
     font1 = {'family': 'serif', 'color': 'blue', 'size': 20}
     next_minute = counter + 1
 
-    
-    
-
     x = data_frame.iloc[:, 0:1].values
     y = data_frame.iloc[:, 1].values
 
-    # Save coordinates into an Excel file
-    data_frame.to_excel("Data\graph.xlsx")
     total_likes = data_frame.iloc[-1, 1]
 
     # Fitting Polynomial Regression to the dataset
@@ -73,6 +63,7 @@ def perform_polynomial_regression(data_frame, counter):
     model = pol_reg.fit(X_poly, y)
 
     prediction = pol_reg.predict(poly_reg.fit_transform(x))
+    print("PREDICTION : "+str(prediction))
 
     # plt.scatter(x, y, color='red')
     # plt.plot(x, prediction, color='blue')
@@ -84,11 +75,19 @@ def perform_polynomial_regression(data_frame, counter):
     b = coefficients[1]
     c = model.intercept_
 
-    x = open('title.txt','w').write("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(
-        round(c, 3)))
+    predicted_value = (a * next_minute * next_minute) + (b * next_minute) + c
 
-    # plt.title("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(
-    #     round(c, 3)), fontdict=font1)
+    data_frame.loc[counter, 'a'] = round(a, 3)
+    data_frame.loc[counter, 'b'] = round(b, 3)
+    data_frame.loc[counter, 'c'] = round(c, 3)
+    data_frame.loc[counter, 'predicted_value'] = round(predicted_value, 3)
+
+    # Save coordinates into an Excel file
+    data_frame.to_excel("Data\graph.xlsx")
+
+    #x = open('title.txt', 'w').write("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str( round(c, 3)))
+
+    # plt.title("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(round(c, 3)), fontdict=font1)
 
     # figure_manager = plt.get_current_fig_manager()
     # figure_manager.full_screen_toggle()
@@ -98,20 +97,18 @@ def perform_polynomial_regression(data_frame, counter):
     # plt.pause(1)
 
     # Save the screen-shot
-    
 
     # ani = FuncAnimation(plt.gcf(), animate, interval=1000)
 
     # # plt.tight_layout()
     # plt.show()
     # # plt.pause(1)
-    
-    
+
     print("Coefficients : " + str(model.coef_))
     print("Intercept : " + str(model.intercept_))
     print("Score [r2] : " + str(r2_score(y, prediction)))
     print("Saturated Time : " + str((b / (2 * a * (-1))) - counter) + " minutes")
-    print("Popularity Condition :" + str(c-((b*b)/(4*a))))
+    print("Popularity Condition :" + str(c - ((b * b) / (4 * a))))
 
     saturated_time = b / (2 * a * (-1))
 
@@ -135,5 +132,3 @@ def perform_polynomial_regression(data_frame, counter):
         ((a * next_minute * next_minute) + (b * next_minute) + c) - total_likes))
     print("Predicted Likes in next minute-1 : " + str(round(b)))
     print("Predicted Total Likes : " + str(((a * saturated_time * saturated_time) + (b * saturated_time) + c)))
-
-

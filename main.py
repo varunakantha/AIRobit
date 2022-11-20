@@ -5,7 +5,7 @@
 import sys
 import time
 import threading
-from test1 import plotdata
+from graph_generator import plotdata
 import pandas as pd
 
 import executors
