@@ -32,7 +32,7 @@ class MainExecutor:
 
         # Make Headless
         print("Starting  with Headless-Mode...")
-        options.headless = False
+        options.headless = True
 
         options.binary_location = r"C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 

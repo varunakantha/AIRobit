@@ -8,8 +8,23 @@ from sklearn.metrics import r2_score
 from sklearn.preprocessing import PolynomialFeatures
 import cmath
 
-def animate(i):
-    graph_data 
+
+import random
+from itertools import count
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# plt.style.use('fivethirtyeight')
+
+
+# plt.ion()
+def animate(i,x,y):
+    plt.cla()
+    plt.plot(x, y, label='Channel 1')
+
+    plt.legend(loc='upper left')
+    plt.tight_layout()
 
 def perform_liner_regression(data_frame):
     print("Performing linear Regression...")
@@ -40,8 +55,8 @@ def perform_polynomial_regression(data_frame, counter):
     font1 = {'family': 'serif', 'color': 'blue', 'size': 20}
     next_minute = counter + 1
 
-    plt.ion()
-    plt.close()
+    
+    
 
     x = data_frame.iloc[:, 0:1].values
     y = data_frame.iloc[:, 1].values
@@ -59,29 +74,39 @@ def perform_polynomial_regression(data_frame, counter):
 
     prediction = pol_reg.predict(poly_reg.fit_transform(x))
 
-    plt.scatter(x, y, color='red')
-    plt.plot(x, prediction, color='blue')
-    plt.xlabel("Time (minutes)", fontdict=font1)
-    plt.ylabel("Likes", fontdict=font1)
+    # plt.scatter(x, y, color='red')
+    # plt.plot(x, prediction, color='blue')
+    # plt.xlabel("Time (minutes)", fontdict=font1)
+    # plt.ylabel("Likes", fontdict=font1)
 
     coefficients = model.coef_
     a = coefficients[2]
     b = coefficients[1]
     c = model.intercept_
 
-    plt.title("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(
-        round(c, 3)), fontdict=font1)
+    x = open('title.txt','w').write("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(
+        round(c, 3)))
 
-    figure_manager = plt.get_current_fig_manager()
-    figure_manager.full_screen_toggle()
-    plt.show()
+    # plt.title("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(
+    #     round(c, 3)), fontdict=font1)
 
-    # Kind of bug fix
-    plt.pause(1)
+    # figure_manager = plt.get_current_fig_manager()
+    # figure_manager.full_screen_toggle()
+    # plt.show()
+
+    # # Kind of bug fix
+    # plt.pause(1)
 
     # Save the screen-shot
-    plt.savefig("Data/graph-" + str(counter) + ".png")
+    
 
+    # ani = FuncAnimation(plt.gcf(), animate, interval=1000)
+
+    # # plt.tight_layout()
+    # plt.show()
+    # # plt.pause(1)
+    
+    
     print("Coefficients : " + str(model.coef_))
     print("Intercept : " + str(model.intercept_))
     print("Score [r2] : " + str(r2_score(y, prediction)))
