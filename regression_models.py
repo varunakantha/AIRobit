@@ -1,12 +1,15 @@
 import time
 
 from matplotlib import pyplot as plt
+from matplotlib import animation as animation
 from sklearn.linear_model import LinearRegression
 import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.preprocessing import PolynomialFeatures
 import cmath
 
+def animate(i):
+    graph_data 
 
 def perform_liner_regression(data_frame):
     print("Performing linear Regression...")
@@ -107,4 +110,5 @@ def perform_polynomial_regression(data_frame, counter):
         ((a * next_minute * next_minute) + (b * next_minute) + c) - total_likes))
     print("Predicted Likes in next minute-1 : " + str(round(b)))
     print("Predicted Total Likes : " + str(((a * saturated_time * saturated_time) + (b * saturated_time) + c)))
+
 

@@ -27,6 +27,8 @@ target_element = "/html/body/div[1]/div[6]/div[1]/div[2]/div/div[3]/div[3]/div/d
 #         # else:
 #         #     print("Ooops! Unable to login to account.")
 
+target_page = "https://gossip.hirufm.lk/77234/2022/07/cctv-matara.html"
+target_element = "/html/body/div[3]/div[5]/div[7]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
 
 if __name__ == '__main__':
     test = test1.animation
