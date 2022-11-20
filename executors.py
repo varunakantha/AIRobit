@@ -32,7 +32,7 @@ class MainExecutor:
 
         # Make Headless
         print("Starting  with Headless-Mode...")
-        options.headless = True
+        options.headless = False
 
         options.binary_location = r"C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 
@@ -73,7 +73,7 @@ class MainExecutor:
         login_button.click()
 
         time.sleep(1)
-        sub_string = "Facebook"
+        sub_string = "Facebookx"
 
         # Check the login title
         if sub_string in MainExecutor.selenium_driver.title:
@@ -81,7 +81,7 @@ class MainExecutor:
             return True
         else:
             print(" Oops'' Login Fail !")
-            return True
+            return False
 
         # Identify the web element and return it
 
@@ -112,10 +112,10 @@ class MainExecutor:
                 self.data_frame.loc[counter, 'time'] = float(counter)
 
                 # This is for FB analysis
-                self.data_frame.loc[counter, 'count'] = float(self.extract_numbers(target_element.text))
+                #self.data_frame.loc[counter, 'count'] = float(self.extract_numbers(target_element.text))
 
                 # This is for Views analysis
-                # self.data_frame.loc[counter, 'count'] = float(int(self.extract_numbers(target_element.text)) - 1)
+                self.data_frame.loc[counter, 'count'] = float(int(self.extract_numbers(target_element.text)) - 1)
 
                 # loop is configured to be executed in every minute
 
