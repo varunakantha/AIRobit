@@ -39,7 +39,7 @@ def perform_liner_regression(data_frame):
     print("--------------------------------------------------------------------------------------------")
     print("--------------------------------------------------------------------------------------------")
     print("Waiting for 1 minute...")
-    time.sleep(10)
+    time.sleep(60)
     # data_frame = data_frame.astype('float64')  # <-seaborn library bug fix
     # sns.pairplot(data_frame, x_vars=['time'], y_vars='count', height=3, aspect=0.7, kind='reg')
     # plt.show()
@@ -83,7 +83,9 @@ def perform_polynomial_regression(data_frame, counter):
     data_frame.loc[counter, 'predicted_value'] = round(predicted_value, 3)
 
     # Save coordinates into an Excel file
-    data_frame.to_excel("Data\graph.xlsx")
+    writer = pd.ExcelWriter('Data\graph.xlsx',mode='a',if_sheet_exists='replace')
+    data_frame.to_excel(writer)
+    writer.save()
 
     #x = open('title.txt', 'w').write("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str( round(c, 3)))
 
