@@ -1,3 +1,4 @@
+import threading
 import time
 
 from matplotlib import pyplot as plt
@@ -36,9 +37,6 @@ def perform_liner_regression(data_frame):
     # print("Coefficients : " + str(model.coef_))
     # print("Intercept : " + str(model.intercept_))
     print("Liner Prediction : y = " + str(m) + "x + " + str(c))
-    print("--------------------------------------------------------------------------------------------")
-    print("--------------------------------------------------------------------------------------------")
-    print("Waiting for 1 minute...")
     time.sleep(60)
     # data_frame = data_frame.astype('float64')  # <-seaborn library bug fix
     # sns.pairplot(data_frame, x_vars=['time'], y_vars='count', height=3, aspect=0.7, kind='reg')
@@ -63,7 +61,7 @@ def perform_polynomial_regression(data_frame, counter):
     model = pol_reg.fit(X_poly, y)
 
     prediction = pol_reg.predict(poly_reg.fit_transform(x))
-    print("PREDICTION : "+str(prediction))
+    # print("PREDICTION : "+str(prediction))
 
     # plt.scatter(x, y, color='red')
     # plt.plot(x, prediction, color='blue')
@@ -83,11 +81,14 @@ def perform_polynomial_regression(data_frame, counter):
     data_frame.loc[counter, 'predicted_value'] = round(predicted_value, 3)
 
     # Save coordinates into an Excel file
-    writer = pd.ExcelWriter('Data\graph.xlsx',mode='a',if_sheet_exists='replace')
+    lock = threading.Lock()
+    lock.acquire()
+    writer = pd.ExcelWriter('Data\graph.xlsx', mode='a', if_sheet_exists='replace')
     data_frame.to_excel(writer)
     writer.save()
+    lock.release()
 
-    #x = open('title.txt', 'w').write("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str( round(c, 3)))
+    # x = open('title.txt', 'w').write("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str( round(c, 3)))
 
     # plt.title("y = (" + str(round(a, 3)) + ")x^2 + (" + str(round(b, 3)) + ")x + " + str(round(c, 3)), fontdict=font1)
 
@@ -134,3 +135,6 @@ def perform_polynomial_regression(data_frame, counter):
         ((a * next_minute * next_minute) + (b * next_minute) + c) - total_likes))
     print("Predicted Likes in next minute-1 : " + str(round(b)))
     print("Predicted Total Likes : " + str(((a * saturated_time * saturated_time) + (b * saturated_time) + c)))
+    print("--------------------------------------------------------------------------------------------")
+    print("--------------------------------------------------------------------------------------------")
+    print("Waiting for 1 minute...")

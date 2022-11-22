@@ -123,11 +123,11 @@ class MainExecutor:
                 # regression_models.perform_liner_regression(self.data_frame)
 
                 regression_models.perform_polynomial_regression(self.data_frame, counter)
-                regression_models.perform_liner_regression(self.data_frame)
+                # regression_models.perform_liner_regression(self.data_frame)
             except Exception as e:
                 print("Oops! Exception in data stream : " + str(counter))
                 print(str(e))
-                time.sleep(60)
+                time.sleep(5)
 
     def extract_numbers(self, text):
 
