@@ -12,12 +12,18 @@ def plotdata():
     font1 = {'family': 'serif', 'color': 'blue', 'size': 20}
 
     def animate(i):
-        print("Animation is started.")
+        print("Animation-Thread is running...")
+        try:
+            lock = threading.Lock()
+            lock.acquire()
+            data = pd.read_excel('Data\graph.xlsx')
+            lock.release()
 
-        lock = threading.Lock()
-        lock.acquire()
-        data = pd.read_excel('Data\graph.xlsx')
-        lock.release()
+        except Exception as e:
+            print("Oops ! Error in Animation-Thread : " + str(e))
+            t2 = threading.Thread(target=plotdata)
+            t2.start()
+            t2.join()
 
         if len(data) > 0:
             x = data['time'].to_list()

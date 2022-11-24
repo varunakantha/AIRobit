@@ -42,8 +42,6 @@ class MainExecutor:
         print("Maximizing Browser...")
         MainExecutor.selenium_driver.maximize_window()
 
-        self.data_frame = pd.DataFrame(columns=['time', 'count'])
-
     def login(self, email, key):
 
         # Go to login page
@@ -96,9 +94,9 @@ class MainExecutor:
             print("Oops ! Element cannot be detected : " + str(e))
 
     def start_data_stream(self, url, xpath):
-
-        # Configured to run for 24 hours
-        for counter in range(1, 1440):
+        self.data_frame = pd.DataFrame(columns=['time', 'count'])
+        # Configured to run for one week
+        for counter in range(1, 10080):
 
             try:
                 print("Redirecting to target page...")
@@ -125,9 +123,10 @@ class MainExecutor:
                 regression_models.perform_polynomial_regression(self.data_frame, counter)
                 # regression_models.perform_liner_regression(self.data_frame)
             except Exception as e:
-                print("Oops! Exception in data stream : " + str(counter))
+                print("Oops! Exception in Data-stream-Thread : " + str(counter))
                 print(str(e))
                 time.sleep(5)
+                self.__init__()
 
     def extract_numbers(self, text):
 

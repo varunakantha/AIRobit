@@ -11,7 +11,7 @@ import pandas as pd
 import executors
 
 
-target_page = "https://gossip.hirufm.lk/81382/2022/11/theekshana-anuradha.html"
+target_page = "https://gossip.hirufm.lk/81445/2022/11/fifa-world-cup-qatar-2022.html"
 target_element = "/html/body/div[1]/div[6]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
 
 def exe_func():
@@ -40,11 +40,3 @@ if __name__ == '__main__':
     t1.join()
     t2.join()
 
-        # else:
-        #     print("Ooops! Unable to login to account.")
-
-# target_page = "https://gossip.hirufm.lk/81340/2022/11/sanoja-bibile.html"
-# target_element = "/html/body/div[1]/div[6]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
-
-# if __name__ == '__main__':
-#     test = test1.animation
