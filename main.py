@@ -10,7 +10,7 @@ import pandas as pd
 
 import executors
 
-target_page = "https://gossip.hirufm.lk/81509/2022/11/hashan-pannila-photos.html"
+target_page = "https://gossip.hirufm.lk/81788/2022/12/praveen-jayavikrma.html"
 target_element = "/html/body/div[1]/div[6]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
 
 

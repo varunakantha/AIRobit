@@ -123,7 +123,7 @@ class MainExecutor:
                 regression_models.perform_polynomial_regression(self.data_frame, counter)
                 # regression_models.perform_liner_regression(self.data_frame)
             except Exception as e:
-                print("Oops! Exception in Data-stream-Thread : " + str(counter))
+                print("Oops! Exception in Data-Thread : " + str(counter))
                 print(str(e))
                 time.sleep(5)
                 self.__init__()

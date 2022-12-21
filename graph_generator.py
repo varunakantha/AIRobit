@@ -44,7 +44,7 @@ def plotdata():
 
         except Exception as e:
             print("Oops ! Error in Animation-Thread : " + str(e))
-            plt.cla()
+            plt.close()
             t2 = threading.Thread(target=plotdata)
             t2.start()
 
