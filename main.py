@@ -10,8 +10,8 @@ import pandas as pd
 
 import executors
 
-target_page = "https://gossip.hirufm.lk/81788/2022/12/praveen-jayavikrma.html"
-target_element = "/html/body/div[1]/div[6]/div[1]/div[2]/div/div[3]/div[3]/div/div[1]/font[1]/b"
+target_page = "https://gossip.hirufm.lk/89263/2023/08/ruwanweli-saya.html"
+target_element = "/html/body/div[1]/div[5]/div[11]/div[1]/div[2]/div/div[3]/div[3]/div/div/font[1]/b"
 
 
 def exe_func():
